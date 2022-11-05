@@ -1,9 +1,8 @@
   $( function() {
-    let pb = $( "#progressbar_GRS_in" ).progressbar({
+     $( "#progressbar_GRS_in" ).progressbar({
       value: 100
     });
-	let pl = $("#progress_label_GRS_in");
-	pl.text();
+	 $("#progress_label_GRS_in");
 	
 	$( "#progressbar_GRS_out" ).progressbar({
       value: 70
