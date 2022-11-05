@@ -1,26 +1,26 @@
 <html>
 	<head>
 		<title> Система уг </title>
+		
 		<link href="dif.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="jquery-ui-1.13.2.light/jquery-ui.css">
 		<script src="jquery-3.6.0.min.js"></script>
 		<script src="jquery-ui-1.13.2.light/jquery-ui.js"></script>
-		<script src="main.js"></script>
 		
+		<script src="main.js"></script>
 		<style>
 		</style>
+		
 	</head>
 	<body>
 	<fieldset id="fieldS">
 		<div id="line_M">
 			<p>Магистраль</p>
-			<div id="pb_GRS_in">
-				<div id="progressbar_GRS_in"></div>
+			<div id="pb_GRS_in" class="pb">
+				<div id="progressbar_GRS_in"><div id="progress_label_GRS_in" class="pl"></div></div>
 			</div>
 		</div>
 		
-		
-
 		<div id="GRS">
 			<p>ГРС</p>
 		</div>
@@ -35,8 +35,6 @@
 				<div id="progressbar_GRP_in"></div>
 			</div>
 		</div>
-		
-		
 		
 		<div id="GRP">
 			<p>ГРП</p>
@@ -92,5 +90,7 @@
 		
 	
 	</fieldset>
+	<script src="real_time.js"></script>
+	
 	</body>
 </html>

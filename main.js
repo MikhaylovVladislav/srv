@@ -1,7 +1,10 @@
   $( function() {
-    $( "#progressbar_GRS_in" ).progressbar({
+    let pb = $( "#progressbar_GRS_in" ).progressbar({
       value: 100
     });
+	let pl = $("#progress_label_GRS_in");
+	pl.text();
+	
 	$( "#progressbar_GRS_out" ).progressbar({
       value: 70
     });
@@ -19,3 +22,4 @@
     });
 	
   } );
+  
