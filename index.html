@@ -2,9 +2,11 @@
 	<head>
 		<title> Система уг </title>
 		<link href="dif.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="jquery-ui-1.13.2.light/jquery-ui.css">
 		<script src="jquery-3.6.0.min.js"></script>
-		<script src="jquery-ui-1.13.2.light\jquery-ui.js"></script>
+		<script src="jquery-ui-1.13.2.light/jquery-ui.js"></script>
 		<script src="main.js"></script>
+		
 		<style>
 		</style>
 	</head>
@@ -12,18 +14,34 @@
 	<fieldset id="fieldS">
 		<div id="line_M">
 			<p>Магистраль</p>
+			<div id="pb_GRS_in">
+				<div id="progressbar_GRS_in"></div>
+			</div>
 		</div>
-	
+		
+		
+
 		<div id="GRS">
 			<p>ГРС</p>
 		</div>
+		
+		<div id="space"></div>
 	
-		<div id="line_M"></div>
-	
+		<div id="line_M">
+			<div id="pb_GRS_out">
+				<div id="progressbar_GRS_out"></div>
+			</div>
+			<div id="pb_GRP_in">
+				<div id="progressbar_GRP_in"></div>
+			</div>
+		</div>
+		
+		
+		
 		<div id="GRP">
 			<p>ГРП</p>
 		</div>
-	
+		<div id="space"></div>
 		<div id="line_C"></div>
 		<div id="O1">
 			<div id="line_H1"></div>
@@ -44,26 +62,22 @@
 		<div id="line_C"></div>
 		<div id="O1">
 			<div id="line_H1"></div>
+			<div id="vent">
+				<div id="part_shturval_v"></div>
+				<div id="part_shturval_h"></div>
+				<div id="disk"></div>
+			</div>
+			<div id="line_H2"></div>
 			<div id="CG">
 				<p>Сч газа</p>
 			</div>
-			<div id="line_H2"></div>
+			
 			<div id="H1">
 				<p>Дом №1</p>
 			</div>
 		</div>
-		<div id="line_O1"></div>
-		<div id="line_C"></div>
-		<div id="O1">
-			<div id="line_H1"></div>
-			<div id="CG">
-				<p>Сч газа</p>
-			</div>
-			<div id="line_H2"></div>
-			<div id="H1">
-				<p>Дом №1</p>
-			</div>
-		</div>
+		<div id="progressbar"></div>
+		
 	
 	</fieldset>
 	</body>

@@ -4,6 +4,7 @@
 	border-style: groove;
 	border-color: blue;
 	border-width: 4px;
+	background-color: gray;
 }
 #GRP{
     width:160px;
@@ -11,6 +12,7 @@
 	border-style: groove;
 	border-color: blue;
 	border-width: 4px;
+	background-color: gray;
 }
 #H1{
     width:160px;
@@ -19,7 +21,7 @@
 	border-color: blue;
 	border-width: 4px;
 	margin-left: 508px;
-	margin-top: -54px;
+	margin-top: -90px;
 }
 #CG{
     width:40px;
@@ -29,6 +31,7 @@
 	border-width: 4px;
 	margin-left: 400px;
 	margin-top: -44px;
+	background-color: gray;
 }
 #vent{
     width:20px;
@@ -61,16 +64,22 @@
 	background-color: green;
 }
 
+#space{
+    height:50px;
+	border-left: 6px solid green;
+	margin-left: 100px;
+}
 #line_M{
-    height:100px;
+    height:160px;
 	border-left: 6px solid green;
 	margin-left: 100px;
 }
 
 #line_C{
-    height:300px;
+    height:310px;
 	border-left: 6px solid green;
 	margin-left: 100px;
+	margin-top: -24px;
 }
 #line_H1{
     width:140px;
@@ -78,14 +87,35 @@
 	margin-left: 100px;
 }
 #line_H2{
-    width:60px;
-	border-top: 6px solid red;
+    width:240px;
+	border-top: 6px solid green;
 	margin-left: 268px;
-	margin-top: -30px;
+	margin-top: -14px;
 }
 
 #fieldS{
     width: 800px;
     height: 1000px;
 	margin-left: 400px;
+}
+
+#pb_GRS_in{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: 90px;
+}
+
+#pb_GRS_out{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: -40px;
+}
+
+#pb_GRP_in{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: 50px;
 }

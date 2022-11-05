@@ -1,2 +1,11 @@
-  <script src="jquery-3.6.0.min.js"></script>
-  <script src="jquery-ui-1.13.2.light\jquery-ui.js"></script>
+  $( function() {
+    $( "#progressbar_GRS_in" ).progressbar({
+      value: 100
+    });
+	$( "#progressbar_GRS_out" ).progressbar({
+      value: 70
+    });
+	$( "#progressbar_GRP_in" ).progressbar({
+      value: 50
+    });
+  } );
