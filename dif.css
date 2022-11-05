@@ -20,7 +20,7 @@
 	border-style: groove;
 	border-color: blue;
 	border-width: 4px;
-	margin-left: 508px;
+	margin-left: 608px;
 	margin-top: -90px;
 }
 #CG{
@@ -29,8 +29,8 @@
 	border-style: groove;
 	border-color: blue;
 	border-width: 4px;
-	margin-left: 400px;
-	margin-top: -44px;
+	margin-left: 500px;
+	margin-top: -120px;
 	background-color: gray;
 }
 #vent{
@@ -87,7 +87,7 @@
 	margin-left: 100px;
 }
 #line_H2{
-    width:240px;
+    width:340px;
 	border-top: 6px solid green;
 	margin-left: 268px;
 	margin-top: -14px;
@@ -118,4 +118,24 @@
     height:60px;
 	margin-left: 10px;
 	margin-top: 50px;
+}
+
+#pb_GRP_out{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: -40px;
+}
+#pb_to_House1{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#pb_to_House2{
+    width:160px;
+    height:60px;
+	margin-left: 10px;
+	margin-top: 10px;
 }
