@@ -8,12 +8,15 @@
 	var MPaMag=0;
 	var MPaGRS=0;
 	var MPaGRP=0;
+	var MPaH1=0;
+	var MPaH2=0;
 	var choiceGRSIn=0;
 	var choiceGRSOut=0;
 	var choiceGRPIn=0;
 	var choiceGRPOut=0;
+	var choiceH1=0;
+	var choiceH2=0;
 	var randChoice=0;
-	var t="sos";
 	var bool=false;
 
 	$("#progress_label_GRS_in").text("0 МПа");
@@ -24,6 +27,10 @@
 	$("#progressbar_GRP_in").progressbar( "option", "value", 0);
 	$("#progress_label_GRP_out").text("0 МПа");
 	$("#progressbar_GRP_out").progressbar( "option", "value", 0);
+	$("#progress_label_to_House1").text("0 МПа");
+	$("#progressbar_to_House1").progressbar( "option", "value", 0);
+	$("#progress_label_to_House2").text("0 МПа");
+	$("#progressbar_to_House2").progressbar( "option", "value", 0);
 	
 	$('#start_srv').on('click', function(){ 
 		bool=true;
@@ -37,18 +44,24 @@
 		choiceGRSOut=0;
 		choiceGRPIn=0;
 		choiceGRPOut=0;
-		for(var i=0;i<5;i++){
+		choiceH1=0;
+		choiceH2=0;
+		for(var i=0;i<6;i++){
 			randChoice=Math.round(Math.random()*10);
 			if(randChoice!==0){
 				choiceGRSIn+=0.2;
 				choiceGRSOut+=0.1;
 				choiceGRPIn+=0.1;
 				choiceGRPOut+=0.0005;
+				choiceH1+=0.000495;
+				choiceH2+=0.000494;
 			}
 		}
 		MPaMag=(Math.random() * (MaxMag - (MinMag+choiceGRSIn)) + (MinMag+choiceGRSIn));
 		MPaGRS=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut));
 		MPaGRP=(Math.random() * (MaxGRP - (MinGRP+choiceGRPOut)) + (MinGRP+choiceGRPOut));
+		MPaH1=(Math.random() * (MaxGRP - (MinGRP+choiceH1)) + (MinGRP+choiceH1));
+		MPaH2=(Math.random() * (MaxGRP - (MinGRP+choiceH2)) + (MinGRP+choiceH2));
 		
 		$("#progress_label_GRS_in").text(String(MPaMag.toFixed(2) + " МПа"));
 		$("#progressbar_GRS_in").progressbar( "option", "value", ((MPaMag/MaxMag)*100) );
@@ -62,6 +75,13 @@
 		
 		$("#progress_label_GRP_out").text(String(MPaGRP.toFixed(4) + " МПа"));
 		$("#progressbar_GRP_out").progressbar( "option", "value", ((MPaGRP/MaxGRP)*100) );
+		
+		$("#progress_label_to_House1").text(String(MPaH1.toFixed(4) + " МПа"));
+		$("#progressbar_to_House1").progressbar( "option", "value", ((MPaH1/MaxGRP)*100) );
+		
+		$("#progress_label_to_House2").text(String(MPaH2.toFixed(4) + " МПа"));
+		$("#progressbar_to_House2").progressbar( "option", "value", ((MPaH2/MaxGRP)*100) );
+		
 		if(bool==true){
 			setTimeout(timer, 1000);
 		}

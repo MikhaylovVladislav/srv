@@ -24,7 +24,7 @@
     });
 	 $("#progress_label_to_House1");
 	 
-		$( "#progressbar_to_House2" ).progressbar({
+	$( "#progressbar_to_House2" ).progressbar({
       value: 33
     });
 	 $("#progress_label_to_House2");
