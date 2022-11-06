@@ -28,6 +28,10 @@
       value: 33
     });
 	 $("#progress_label_to_House2");
+	 
+	$( "#sliderMag" ).slider();
+	$( "#sliderGRS" ).slider();
+	$( "#sliderGRP" ).slider();
 	
   } );
   

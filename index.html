@@ -12,9 +12,25 @@
 		
 	</head>
 	<body>
-	<button id="start_srv">Start</button>
-	<button id="stop_srv" >Stop</button>
-	<fieldset id="fieldS">
+	<fieldset id="menu" class="fs">
+		<button id="start_srv">Start</button>
+		<button id="stop_srv" >Stop</button>
+		<button id="option_srv" >Открыть настройки</button>
+		<button id="option_srv" >Режим отладки</button>
+		<button id="option_srv" >Режим аварий</button>
+	<fieldset id="option">
+		<legend>Настройки</legend>
+		
+		<p class="desk"> Давление в магистрали:</p>
+		<div id="sliderMag"></div>
+		<p class="desk"> Выходное давление ГРС:</p>
+		<div id="sliderGRS"></div>
+		<p class="desk"> Выходное давление ГРП:</p>
+		<div id="sliderGRP"></div>
+		
+	</fieldset>
+	</fieldset>
+	<fieldset id="fieldS" class="fs">
 		<div id="line_M">
 			<p>Магистраль</p>
 			<div id="pb_GRS_in" class="pb">
