@@ -101,6 +101,15 @@
 			setTimeout(timer, 1000);
 		}
 	}
+	
+
+
+
+	var time = setInterval(function() {
+		var date = new Date();
+		$("#date").text(date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear());
+		$("#time").text(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+	}, 1000);
 
 	
 });
