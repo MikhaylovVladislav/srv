@@ -50,18 +50,41 @@
 		$("#time").text(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
 	}, 1000);
 	
+	
+	$('#checkbox-1').on('change', function(){ 
+		var dateZ = new Date();
+		var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+		if($("#checkbox-1").is(":checked")){
+			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№1 включено" + $("#textLog").text());
+		}else{
+			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№1 отключено" + $("#textLog").text());
+		}
+		});
+		
+		$('#checkbox-2').on('change', function(){ 
+		var dateZ = new Date();
+		var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+		if($("#checkbox-2").is(":checked")){
+			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
+		}else{
+			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено" + $("#textLog").text());
+		}
+		});
+	
 	$('.H').on('change', function(){ 
+		
 	if($("#checkbox-1").is(":checked")){
 		isOnH1=1;
 		$("#disk1").css('background-color','green');
 		$("#disk1").css('border','4px solid green');
 		$("#line_H2").css('border-top','6px solid green');
+		
 	}else{
 		isOnH1=0;
 		$("#disk1").css('background-color','red');
 		$("#disk1").css('border','4px solid red');
 		$("#line_H2").css('border-top','6px solid red');
-		$("#textLog").html($("#textLog").text()+ "\n"+"Поступление газа к Д№1 отключено");
+		
 	}
 	
 	if($("#checkbox-2").is(":checked")){
@@ -69,12 +92,13 @@
 		$("#disk2").css('background-color','green');
 		$("#disk2").css('border','4px solid green');
 		$("#line_H3").css('border-top','6px solid green');
+		$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
 	}else{
 		isOnH2=0;
 		$("#disk2").css('background-color','red');
 		$("#disk2").css('border','4px solid red');
 		$("#line_H3").css('border-top','6px solid red');
-			$("#textLog").html($("#textLog").text()+ "\n"+"Поступление газа к Д№2 отключено");
+		$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено"+ $("#textLog").text());
 	}
 	});
 	
@@ -94,8 +118,6 @@
 		choiceGRPOut=0;
 		choiceH1=0;
 		choiceH2=0;
-		
-		//$("#textLog").html("");
 		
 		slideMag=$("#sliderMag").slider("value");
 		slideGRP=$("#sliderGRP").slider("value");
@@ -205,10 +227,6 @@
 			setTimeout(timer, 1000);
 		}
 	}
-	
-
-
-
 	
 
 	
