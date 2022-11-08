@@ -76,6 +76,7 @@
     });
 	
 	$( "input" ).checkboxradio();
+	 $( "#seson" ).selectmenu();
 	
   } );
 	

@@ -30,6 +30,13 @@
 	var isOnH1=1;
 	var isOnH2=1;
 	var isOnH=1;
+	var gasOnH1=0;
+	var gasOnH2=0;
+	var profitGasOnH1=0;
+	var profitGasOnH2=0;
+	var tarif=1;
+	var gasOnSecH1=0;
+	var gasOnSecH2=0;
 
 	$("#progress_label_GRS_in").text("0 МПа");
 	$("#progressbar_GRS_in").progressbar( "option", "value", 0);
@@ -43,6 +50,19 @@
 	$("#progressbar_to_House1").progressbar( "option", "value", 0);
 	$("#progress_label_to_House2").text("0 МПа");
 	$("#progressbar_to_House2").progressbar( "option", "value", 0);
+	
+	
+	$( "#seson" ).on( "selectmenuselect", function() {
+		if($("#1").is(":selected")){
+			tarif=1.28;
+		}else if($("#2").is(":selected")){
+			tarif=1.05;
+		}else if($("#3").is(":selected")){
+			tarif=0.70;
+		}else if($("#4").is(":selected")){
+			tarif=1.01;
+		}
+	} );
 	
 	var time = setInterval(function() {
 		var date = new Date();
@@ -221,8 +241,22 @@
 		$("#progress_label_to_House2").text(String(MPaH2.toFixed(4) + " МПа"));
 		$("#progressbar_to_House2").progressbar( "option", "value", ((MPaH2/MaxGRP)*100) );
 		
-	
-		
+		if(isOnH1==0 || isOnH==0){
+		}else{
+			gasOnH1=tarif*4.12/360;
+			gasOnSecH1+=gasOnH1;
+			$("#cg_H1").text(String(gasOnSecH1.toFixed(2)) + " куб.м");
+			profitGasOnH1+=gasOnH1*5.617;
+			$("#profit_H1").text("Доход: " + String(profitGasOnH1.toFixed(4)) + " руб.");
+		}
+		if(isOnH2==0 || isOnH==0){
+		}else{
+			gasOnH2=tarif*8.16/360;
+			gasOnSecH2+=gasOnH2;
+			$("#cg_H2").text(String(gasOnSecH2.toFixed(2)) + " куб.м");
+			profitGasOnH2+=gasOnH2*5.617;
+			$("#profit_H2").text("Доход: " + String(profitGasOnH2.toFixed(4)) + " руб.");
+		}
 		if(bool==true){
 			setTimeout(timer, 1000);
 		}

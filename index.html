@@ -14,6 +14,15 @@
 	<body>
 	<div id="date"></div>
 	<div id="time"></div>
+	<div id="sesons">
+	<label for="seson">Сезон года</label>
+    <select name="seson" id="seson">
+      <option id="1">Зима</option>
+      <option id="2">Весна</option>
+      <option id="3">Лето</option>
+      <option selected="selected" id="4"> Осень</option>
+    </select>
+	</div>
 	<fieldset id="menu" class="fs">
 		<button id="start_srv">Start</button>
 		<button id="stop_srv" >Stop</button>
@@ -92,8 +101,10 @@
 					<div id="progressbar_to_House1"><div id="progress_label_to_House1" class="pl"></div></div>
 				</div>
 			</div>
+
 			<div id="CG">
 				<p>Сч газа</p>
+				<p id="cg_H1" class="cg_H"></p>
 			</div>
 			
 			<div id="H1">
@@ -115,6 +126,7 @@
 			</div>
 			<div id="CG">
 				<p>Сч газа</p>
+				<p id="cg_H2" class="cg_H"></p>
 			</div>
 			
 			<div id="H1">
@@ -131,8 +143,21 @@
 		<textarea id="textLog" readonly></textarea>
 	</fieldset>
 	
-		<fieldset id="data">
-		<legend>Данные</legend>
+	<fieldset id="data">
+		<legend>Данные с. Старо-Рутово</legend>
+		Тариф = 5.617 руб. за куб.м
+		<div id="data_H1">
+			<p> Дом №1 Ул. Ленина: </p>
+			<p> Мощность котла - 20 кВт</p>
+			<p> Площадь обогреваемого помещения - 35 м*м</p>
+		<div><div id="profit_H1"> Доход: </div>
+		
+		<div id="data_H2">
+			<p> Дом №1 Ул. Ленина: </p>
+			<p> Мощность котла - 35 кВт</p>
+			<p> Площадь обогреваемого помещения - 58 м*м</p>
+		<div><div id="profit_H2"> Доход: </div>
+		
 	</fieldset>
 	
 	
