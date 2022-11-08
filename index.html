@@ -3,33 +3,49 @@
 		<title> Система уг </title>
 		
 		<link href="dif.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="jquery-ui-1.13.2.light/jquery-ui.css">
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css">
 		<script src="jquery-3.6.0.min.js"></script>
-		<script src="jquery-ui-1.13.2.light/jquery-ui.js"></script>
+		<script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
 		<script src="main.js"></script>
 		<style>
 		</style>
 		
 	</head>
 	<body>
+
+	<p id="time"></p>
 	<fieldset id="menu" class="fs">
 		<button id="start_srv">Start</button>
 		<button id="stop_srv" >Stop</button>
-		<button id="option_srv" >Открыть настройки</button>
-		<button id="option_srv" >Режим отладки</button>
-		<button id="option_srv" >Режим аварий</button>
+		<button id="consumer_srv">Потребители</button>
+		<button id="option_srv">Открыть настройки</button>
+		<button id="option_srv">Режим отладки</button>
+		<button id="option_srv">Режим аварий</button>
 	<fieldset id="option">
 		<legend>Настройки</legend>
 		
 		<p class="desk"> Давление в магистрали:</p>
-		<div id="sliderMag"></div>
+		<div id="sliderMag" class="slide"> <div id="custom-handleMag" class="ui-slider-handle"></div></div>
 		<p class="desk"> Выходное давление ГРС:</p>
-		<div id="sliderGRS"></div>
+		<div id="sliderGRS" class="slide"><div id="custom-handleGRS" class="ui-slider-handle"></div></div>
 		<p class="desk"> Выходное давление ГРП:</p>
-		<div id="sliderGRP"></div>
+		<div id="sliderGRP" class="slide"><div id="custom-handleGRP" class="ui-slider-handle"></div></div>
+		
+	</fieldset>
+	
+	<fieldset id="consumer">
+		<legend>Потребители</legend>
+		
+		<label for="checkbox-1">Дом №1</label>
+		<input type="checkbox" name="checkbox-1" id="checkbox-1">
+		<label for="checkbox-2">Дом №2</label>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2">
 		
 	</fieldset>
 	</fieldset>
+	
+	
+	
 	<fieldset id="fieldS" class="fs">
 		<div id="line_M">
 			<p>Магистраль</p>
@@ -105,6 +121,11 @@
 		</div>
 	
 		
+	
+	</fieldset>
+	
+	<fieldset id="log">
+		<legend>Лог</legend>
 	
 	</fieldset>
 	<script src="real_time.js"></script>
