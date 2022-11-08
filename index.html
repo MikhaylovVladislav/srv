@@ -37,17 +37,19 @@
 		<legend>Потребители</legend>
 		
 		<label for="checkbox-1">Дом №1</label>
-		<input type="checkbox" name="checkbox-1" id="checkbox-1">
+		<input type="checkbox" name="checkbox-1" id="checkbox-1"  class="H" checked>
 		<label for="checkbox-2">Дом №2</label>
-		<input type="checkbox" name="checkbox-2" id="checkbox-2">
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="H" checked>
 		
 	</fieldset>
 	</fieldset>
 	
+
+	
 	
 	
 	<fieldset id="fieldS" class="fs">
-		<div id="line_M">
+		<div id="line_M1" class="line_M">
 			<p>Магистраль</p>
 			<div id="pb_GRS_in" class="pb">
 				<div id="progressbar_GRS_in"><div id="progress_label_GRS_in" class="pl"></div></div>
@@ -60,7 +62,7 @@
 		
 		<div id="space"></div>
 	
-		<div id="line_M">
+		<div id="line_M2" class="line_M">
 			<div id="pb_GRS_out" class="pb">
 				<div id="progressbar_GRS_out"><div id="progress_label_GRS_out" class="pl"></div></div>
 			</div>
@@ -73,17 +75,17 @@
 			<p>ГРП</p>
 		</div>
 		<div id="space"></div>
-		<div id="line_C">
+		<div id="line_C" class="line_C">
 			<div id="pb_GRP_out" class="pb">
 				<div id="progressbar_GRP_out"><div id="progress_label_GRP_out" class="pl"></div></div>
 			</div>
 		</div>
 		<div id="O1">
-			<div id="line_H1"></div>
+			<div id="line_H0"></div>
 			<div id="vent">
 				<div id="part_shturval_v"></div>
 				<div id="part_shturval_h"></div>
-				<div id="disk"></div>
+				<div id="disk1" class="disk"></div>
 			</div>
 			<div id="line_H2">
 				<div id="pb_to_House1" class="pb">
@@ -98,15 +100,15 @@
 				<p>Дом №1</p>
 			</div>
 		</div>
-		<div id="line_C"></div>
+		<div id="line_C" class="line_C"></div>
 		<div id="O1">
 			<div id="line_H1"></div>
 			<div id="vent">
 				<div id="part_shturval_v"></div>
 				<div id="part_shturval_h"></div>
-				<div id="disk"></div>
+				<div id="disk2" class="disk"></div>
 			</div>
-			<div id="line_H2">
+			<div id="line_H3">
 				<div id="pb_to_House2" class="pb">
 					<div id="progressbar_to_House2"><div id="progress_label_to_House2" class="pl"></div></div>
 				</div>
@@ -126,8 +128,14 @@
 	
 	<fieldset id="log">
 		<legend>Лог</legend>
-	
+		<textarea id="textLog" readonly></textarea>
 	</fieldset>
+	
+		<fieldset id="data">
+		<legend>Данные</legend>
+	</fieldset>
+	
+	
 	<script src="real_time.js"></script>
 	
 	</body>
