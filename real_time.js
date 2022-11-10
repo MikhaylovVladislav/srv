@@ -37,6 +37,18 @@
 	var tarif=1;
 	var gasOnSecH1=0;
 	var gasOnSecH2=0;
+	var isModeBreak=false;
+	var isBreakM1=false; 
+	var isBreakM2=false; 
+	var isBreakC=false; 
+	var isBreakH0=false; 
+	var isBreakH1=false; 
+	var isBreakH2=false; 
+	var isBreakH3=false; 
+	var gr="6px solid green";
+	var ye="6px solid gold";
+	var re="6px solid red";
+	var toggle=true;
 
 	$("#progress_label_GRS_in").text("0 МПа");
 	$("#progressbar_GRS_in").progressbar( "option", "value", 0);
@@ -82,53 +94,170 @@
 		});
 		
 		$('#checkbox-2').on('change', function(){ 
-		var dateZ = new Date();
-		var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
-		if($("#checkbox-2").is(":checked")){
-			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
-		}else{
-			$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено" + $("#textLog").text());
-		}
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			if($("#checkbox-2").is(":checked")){
+				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
+			}else{
+				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено" + $("#textLog").text());
+			}
 		});
 	
-	$('.H').on('change', function(){ 
-		
-	if($("#checkbox-1").is(":checked")){
-		isOnH1=1;
-		$("#disk1").css('background-color','green');
-		$("#disk1").css('border','4px solid green');
-		$("#line_H2").css('border-top','6px solid green');
-		
-	}else{
-		isOnH1=0;
-		$("#disk1").css('background-color','red');
-		$("#disk1").css('border','4px solid red');
-		$("#line_H2").css('border-top','6px solid red');
-		
-	}
+		$('.H').on('change', function(){ 
+			if($("#checkbox-1").is(":checked")){
+				isOnH1=1;
+				$("#disk1").css('background-color','green');
+				$("#disk1").css('border','4px solid green');
+				$("#line_H2").css('border-top','6px solid green');
+			}else{
+				isOnH1=0;
+				$("#disk1").css('background-color','red');
+				$("#disk1").css('border','4px solid red');
+				$("#line_H2").css('border-top','6px solid red');
+			}
 	
-	if($("#checkbox-2").is(":checked")){
-		isOnH2=1;
-		$("#disk2").css('background-color','green');
-		$("#disk2").css('border','4px solid green');
-		$("#line_H3").css('border-top','6px solid green');
-		$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
-	}else{
-		isOnH2=0;
-		$("#disk2").css('background-color','red');
-		$("#disk2").css('border','4px solid red');
-		$("#line_H3").css('border-top','6px solid red');
-		$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено"+ $("#textLog").text());
-	}
-	});
+			if($("#checkbox-2").is(":checked")){
+				isOnH2=1;
+				$("#disk2").css('background-color','green');
+				$("#disk2").css('border','4px solid green');
+				$("#line_H3").css('border-top','6px solid green');
+				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
+			}else{
+				isOnH2=0;
+				$("#disk2").css('background-color','red');
+				$("#disk2").css('border','4px solid red');
+				$("#line_H3").css('border-top','6px solid red');
+				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено"+ $("#textLog").text());
+			}
+			});
 	
 	$('#start_srv').on('click', function(){ 
 		bool=true;
 		var time = setTimeout(timer, 1000);
 	});
+	
 	$('#stop_srv').on('click', function(){ 
 		bool=false;
 	});
+	
+	$('#break_srv').on('click', function(){ 
+		isModeBreak=true;
+		$("#fieldS").css("border-color", "red");
+		$("#mainLegend").html("Система реального времени [РЕЖИМ АВАРИЙ]");
+		
+	});
+	
+	$('#outBreak_srv').on('click', function(){ 
+		isModeBreak=false;
+		$("#fieldS").css("border-color", "gray");
+		$("#mainLegend").html("Система реального времени");
+		
+	});
+	
+	
+	$('#line_M1').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakM1=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на магистральном трубопроводе" + $("#textLog").text());
+			$('#line_M1').css("border-left", ye);	
+		}
+	});
+	
+	$('#line_M2').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakM2=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на распределительном трубопроводе" + $("#textLog").text());
+			$('#line_M2').css("border-left", ye);	
+		}
+	});
+	
+	$('#line_H3').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakH3=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на вводном трубопроводе" + $("#textLog").text());
+			$('#line_H3').css("border-top", "6px solid gold");	
+		}
+	});
+	
+	$('#line_H1').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakH1=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на газопровод-вводном трубопроводе" + $("#textLog").text());
+			$('#line_H1').css("border-top", "6px solid gold");	
+		}
+	});
+	
+	$('#line_H0').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakH0=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на газопровод-вводном трубопроводе" + $("#textLog").text());
+			$('#line_H0').css("border-top", "6px solid gold");	
+		}
+	});
+	
+	$('#line_H2').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakH2=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария на вводном трубопроводе" + $("#textLog").text());
+			$('#line_H2').css("border-top", "6px solid gold");	
+		}
+	});
+	
+	$('#line_C1').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakC=true;
+			$('#line_C1').css("border-left", "6px solid gold");	
+			$('#line_C2').css("border-left", "6px solid gold");	
+		}
+	});
+	$('#line_C2').on('click', function(){ 
+		if(isModeBreak==true){
+			isBreakC=true;
+			$("#textLog").html( "\n"+dateZ+"Авария на регулирующем трубопроводе" + $("#textLog").text());
+			$('#line_C1').css("border-left", "6px solid gold");	
+			$('#line_C2').css("border-left", "6px solid gold");	
+		}
+	});
+	
+	$('#brig_srv').on('click', function(){ 
+		var dateZ = new Date();
+		var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+		$("#textLog").html( "\n"+dateZ+"Отправлена заявка на ликвидацию аварии" + $("#textLog").text());
+		var time = setTimeout(function() {
+			
+			isBreakM1=false; 
+			isBreakM2=false; 
+			isBreakC=false; 
+			isBreakH0=false; 
+			isBreakH1=false; 
+			isBreakH2=false; 
+			isBreakH3=false;
+		
+			$("#textLog").html( "\n"+dateZ+"Авария ликвидирована" + $("#textLog").text());
+			$('#line_C1').css("border-left", "6px solid green");	
+			$('#line_C2').css("border-left", "6px solid green");	
+			$('#line_H0').css("border-top", "6px solid green");	
+			$('#line_H1').css("border-top", "6px solid green");	
+			$('#line_H2').css("border-top", "6px solid green");	
+			$('#line_H3').css("border-top", "6px solid green");	
+			$('#line_M1').css("border-left", "6px solid green");	
+			$('#line_M2').css("border-left", "6px solid green");	
+	}, 5000);
+		
+	});
+	
 	function timer() {
 		var dateN = new Date();
 		var dateT=dateN.getHours() + ":" + dateN.getMinutes() + ":" + dateN.getSeconds()+" ";
@@ -161,10 +290,14 @@
 			$("#textLog").html("\n"+dateT+ " Низкое давление в магистрале"+ $("#textLog").text());
 			}
 			isMagInLog=true;
-			$("#line_M1").css('border-left','6px solid red');
+			
+			isBreakM1 == true && toggle ==true  ? $("#line_M1").css('border-left',ye) : $("#line_M1").css('border-left',re);
+			toggle=!toggle;
 		}else{
+			isBreakM1 == true && toggle ==true  ? $("#line_M1").css('border-left',ye) : $("#line_M1").css('border-left',gr);
+			toggle=!toggle;
 			isMagInLog=false;
-			$("#line_M1").css('border-left','6px solid green');
+			
 		}
 		MPaGRS=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut))/100 * slideGRS;
 		if(MPaGRS<MinGRS ){
@@ -174,11 +307,12 @@
 				$("#textLog").html( "\n"+dateT+"Низкое выходное давление ГРС" + $("#textLog").text());
 			}
 			isGRSInLog=true;
-			$("#line_M2").css('border-left','6px solid red');
+			isBreakM2 == true && toggle ==true  ? $("#line_M2").css('border-left',ye) : $("#line_M2").css('border-left',re);
 
 		}else{
 			isGRSInLog=false;
-			$("#line_M2").css('border-left','6px solid green');
+			isBreakM2 == true && toggle ==true  ? $("#line_M2").css('border-left',ye) : $("#line_M2").css('border-left',gr);
+			
 		}
 		
 		MPaGRP=(Math.random() * (MaxGRP - (MinGRP+choiceGRPOut)) + (MinGRP+choiceGRPOut))/100 * slideGRP;
@@ -198,26 +332,28 @@
 			$("#textLog").html("\n"+dateT+"Поступление газа к Д№2 отсутствует"+ $("#textLog").text());
 			}
 			isH2InLog=true;
-			$("#line_H0").css('border-top','6px solid red');
-			$("#line_H1").css('border-top','6px solid red');
-			$("#line_H2").css('border-top','6px solid red');
-			$("#line_H3").css('border-top','6px solid red');
-			$(".line_C").css('border-left','6px solid red');
+			isBreakH0 == true && toggle ==true  ? $("#line_H0").css('border-top',ye) : $("#line_H0").css('border-top',re);
+			isBreakH1 == true && toggle ==true  ? $("#line_H1").css('border-top',ye) : $("#line_H1").css('border-top',re);
+			isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',re);
+			isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',re);
+			
+			isBreakC == true && toggle ==true  ? $(".line_C").css('border-left',ye) : $(".line_C").css('border-left',re);
+
 		}else{
 			isOnH=1;
 			isGRPInLog=false;
 			isH1InLog=false;
 			isH2InLog=false;
-			$("#line_H0").css('border-top','6px solid green');
-			$("#line_H1").css('border-top','6px solid green');
+			isBreakH0 == true && toggle ==true  ? $("#line_H0").css('border-top',ye) : $("#line_H0").css('border-top',gr);
+			isBreakH1 == true && toggle ==true  ? $("#line_H1").css('border-top',ye) : $("#line_H1").css('border-top',gr);
 			
 			if(isOnH1==1){
-				$("#line_H2").css('border-top','6px solid green');
+				isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',gr);
 			}
 			if(isOnH2==1){
-				$("#line_H3").css('border-top','6px solid green');
+				isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',gr);
 			}
-			$(".line_C").css('border-left','6px solid green');
+			isBreakC == true && toggle ==true  ? $(".line_C").css('border-left',ye) : $(".line_C").css('border-left',gr);
 		}
 		MPaH1=(Math.random() * (MaxGRP - (MinGRP+choiceH1)) + (MinGRP+choiceH1))/100 * slideGRP*isOnH1*isOnH ;
 		MPaH2=(Math.random() * (MaxGRP - (MinGRP+choiceH2)) + (MinGRP+choiceH2))/100 * slideGRP*isOnH2*isOnH;	

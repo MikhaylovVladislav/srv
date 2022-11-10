@@ -28,8 +28,8 @@
 		<button id="stop_srv" >Stop</button>
 		<button id="consumer_srv">Потребители</button>
 		<button id="option_srv">Открыть настройки</button>
-		<button id="option_srv">Режим отладки</button>
-		<button id="option_srv">Режим аварий</button>
+		<button id="brig_srv">Отправить бригаду на аварию</button>
+		
 	<fieldset id="option">
 		<legend>Настройки</legend>
 		
@@ -51,6 +51,11 @@
 		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="H" checked>
 		
 	</fieldset>
+	
+		<fieldset id="break">
+			<button id="break_srv">Режим аварий</button>
+			<button id="outBreak_srv">Выйти из режима аварий</button>
+		</fieldset>
 	</fieldset>
 	
 
@@ -58,15 +63,16 @@
 	
 	
 	<fieldset id="fieldS" class="fs">
+		<legend id="mainLegend">Система реального времени</legend>
 		<div id="line_M1" class="line_M">
-			<p>Магистраль</p>
+			<p class="graph">Магистраль</p>
 			<div id="pb_GRS_in" class="pb">
 				<div id="progressbar_GRS_in"><div id="progress_label_GRS_in" class="pl"></div></div>
 			</div>
 		</div>
 		
 		<div id="GRS">
-			<p>ГРС</p>
+			<p class="graph">ГРС</p>
 		</div>
 		
 		<div id="space"></div>
@@ -81,10 +87,10 @@
 		</div>
 		
 		<div id="GRP">
-			<p>ГРП</p>
+			<p class="graph">ГРП</p>
 		</div>
 		<div id="space"></div>
-		<div id="line_C" class="line_C">
+		<div id="line_C1" class="line_C">
 			<div id="pb_GRP_out" class="pb">
 				<div id="progressbar_GRP_out"><div id="progress_label_GRP_out" class="pl"></div></div>
 			</div>
@@ -103,15 +109,15 @@
 			</div>
 
 			<div id="CG">
-				<p>Сч газа</p>
+				<p class="graph">Сч газа</p>
 				<p id="cg_H1" class="cg_H"></p>
 			</div>
 			
-			<div id="H1">
-				<p>Дом №1</p>
+			<div id="H1" class="H">
+				<p class="graph">Дом №1</p>
 			</div>
 		</div>
-		<div id="line_C" class="line_C"></div>
+		<div id="line_C2" class="line_C"></div>
 		<div id="O1">
 			<div id="line_H1"></div>
 			<div id="vent">
@@ -125,12 +131,12 @@
 				</div>
 			</div>
 			<div id="CG">
-				<p>Сч газа</p>
+				<p class="graph">Сч газа</p>
 				<p id="cg_H2" class="cg_H"></p>
 			</div>
 			
-			<div id="H1">
-				<p>Дом №2</p>
+			<div id="H2" class="H">
+				<p class="graph">Дом №2</p>
 			</div>
 		</div>
 	
@@ -145,18 +151,18 @@
 	
 	<fieldset id="data">
 		<legend>Данные с. Старо-Рутово</legend>
-		Тариф = 5.617 руб. за куб.м
+		<p class="prof">Тариф = 5.617 руб. за куб.м </p>
 		<div id="data_H1">
 			<p> Дом №1 Ул. Ленина: </p>
 			<p> Мощность котла - 20 кВт</p>
 			<p> Площадь обогреваемого помещения - 35 м*м</p>
-		<div><div id="profit_H1"> Доход: </div>
+		<div><div id="profit_H1" class="prof"> Доход: </div>
 		
 		<div id="data_H2">
 			<p> Дом №1 Ул. Ленина: </p>
 			<p> Мощность котла - 35 кВт</p>
 			<p> Площадь обогреваемого помещения - 58 м*м</p>
-		<div><div id="profit_H2"> Доход: </div>
+		<div><div id="profit_H2" class="prof"> Доход: </div>
 		
 	</fieldset>
 	
