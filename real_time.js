@@ -8,6 +8,7 @@
 	var MPaMag=0;
 	var MPaGRS=0;
 	var MPaGRP=0;
+	var	MPaGRPIn=0
 	var MPaH1=0;
 	var MPaH2=0;
 	var choiceGRSIn=0;
@@ -49,6 +50,13 @@
 	var ye="6px solid gold";
 	var re="6px solid red";
 	var toggle=true;
+	var IOH=1;
+	var IOH1=1;
+	var IOH2=1;
+	var IOH1In=1;
+	var IOH2In=1;
+	var colorH1="";
+	var colorH2="";
 
 	$("#progress_label_GRS_in").text("0 МПа");
 	$("#progressbar_GRS_in").progressbar( "option", "value", 0);
@@ -108,25 +116,33 @@
 				isOnH1=1;
 				$("#disk1").css('background-color','green');
 				$("#disk1").css('border','4px solid green');
-				$("#line_H2").css('border-top','6px solid green');
+				colorH1="6px solid green";
+				//$("#line_H2").css('border-top','6px solid green');
 			}else{
 				isOnH1=0;
 				$("#disk1").css('background-color','red');
 				$("#disk1").css('border','4px solid red');
-				$("#line_H2").css('border-top','6px solid red');
+				colorH1="6px solid red";
+				//$("#line_H2").css('border-top','6px solid red');
 			}
 	
 			if($("#checkbox-2").is(":checked")){
+				var dateZ = new Date();
+				var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
 				isOnH2=1;
 				$("#disk2").css('background-color','green');
 				$("#disk2").css('border','4px solid green');
-				$("#line_H3").css('border-top','6px solid green');
+				colorH2="6px solid green";
+				//$("#line_H3").css('border-top','6px solid green');
 				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 включено" + $("#textLog").text());
 			}else{
+				var dateZ = new Date();
+				var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
 				isOnH2=0;
 				$("#disk2").css('background-color','red');
 				$("#disk2").css('border','4px solid red');
-				$("#line_H3").css('border-top','6px solid red');
+				colorH2="6px solid red";
+				//$("#line_H3").css('border-top','6px solid red');
 				$("#textLog").html("\n"+dateZ+"Поступление газа к Д№2 отключено"+ $("#textLog").text());
 			}
 			});
@@ -244,6 +260,8 @@
 			isBreakH1=false; 
 			isBreakH2=false; 
 			isBreakH3=false;
+			IOH1In=1;
+			IOH2In=1;
 		
 			$("#textLog").html( "\n"+dateZ+"Авария ликвидирована" + $("#textLog").text());
 			$('#line_C1').css("border-left", "6px solid green");	
@@ -271,6 +289,8 @@
 		slideMag=$("#sliderMag").slider("value");
 		slideGRP=$("#sliderGRP").slider("value");
 		slideGRS=$("#sliderGRS").slider("value");
+		isBreakH2 == true ? IOH1In=0:IOH1In=1;
+		isBreakH3 == true ? IOH2In=0:IOH2In=1;
 		
 		for(var i=0;i<6;i++){
 			randChoice=Math.round(Math.random()*kf);
@@ -283,7 +303,9 @@
 				choiceH2+=0.000494;
 			}
 		}
+		isBreakM1==true ? slideMag=0:slideMag=slideMag;
 		MPaMag=(Math.random() * (MaxMag - (MinMag+choiceGRSIn)) + (MinMag+choiceGRSIn))/100 * slideMag ;
+		
 		if(MPaMag<MinMag ){
 			slideGRS=0;
 			if(isMagInLog==false){
@@ -299,7 +321,14 @@
 			isMagInLog=false;
 			
 		}
+		if(isBreakM2==true){
+			MPaGRPIn=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut))/100 * 0;
+			slideGRP=0;
+		}else{
+			MPaGRPIn=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut))/100 * slideGRS;
+		}
 		MPaGRS=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut))/100 * slideGRS;
+		
 		if(MPaGRS<MinGRS ){
 			slideGRP=0;
 			if(isGRSInLog==false){
@@ -315,7 +344,9 @@
 			
 		}
 		
-		MPaGRP=(Math.random() * (MaxGRP - (MinGRP+choiceGRPOut)) + (MinGRP+choiceGRPOut))/100 * slideGRP;
+		MPaGRP=(Math.random() * (MPaGRP - (MinGRP+choiceGRPOut)) + (MinGRP+choiceGRPOut))/100 * slideGRP;
+		
+		
 		if(MPaGRP<MinGRP ){
 			isOnH=0;
 			if(isGRPInLog==false){
@@ -323,7 +354,11 @@
 			$("#textLog").html("\n"+dateT+"Низкое выходное давление ГРП"+ $("#textLog").text());
 			}
 			isGRPInLog=true;
+			
+			
+			
 			if(isH1InLog==false){
+				
 			$("#textLog").html("\n"+dateT+"Поступление газа к Д№1 отсутствует"+ $("#textLog").text());
 			}
 			isH1InLog=true;
@@ -336,7 +371,6 @@
 			isBreakH1 == true && toggle ==true  ? $("#line_H1").css('border-top',ye) : $("#line_H1").css('border-top',re);
 			isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',re);
 			isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',re);
-			
 			isBreakC == true && toggle ==true  ? $(".line_C").css('border-left',ye) : $(".line_C").css('border-left',re);
 
 		}else{
@@ -346,17 +380,28 @@
 			isH2InLog=false;
 			isBreakH0 == true && toggle ==true  ? $("#line_H0").css('border-top',ye) : $("#line_H0").css('border-top',gr);
 			isBreakH1 == true && toggle ==true  ? $("#line_H1").css('border-top',ye) : $("#line_H1").css('border-top',gr);
+			if(isOnH1==0){
+				isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',colorH1);
+			}
 			
+			if(isOnH2==0){
+				isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',colorH2);
+			}
 			if(isOnH1==1){
-				isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',gr);
+				isBreakH2 == true && toggle ==true  ? $("#line_H2").css('border-top',ye) : $("#line_H2").css('border-top',colorH1);
 			}
 			if(isOnH2==1){
-				isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',gr);
+				isBreakH3 == true && toggle ==true  ? $("#line_H3").css('border-top',ye) : $("#line_H3").css('border-top',colorH2);
 			}
 			isBreakC == true && toggle ==true  ? $(".line_C").css('border-left',ye) : $(".line_C").css('border-left',gr);
 		}
-		MPaH1=(Math.random() * (MaxGRP - (MinGRP+choiceH1)) + (MinGRP+choiceH1))/100 * slideGRP*isOnH1*isOnH ;
-		MPaH2=(Math.random() * (MaxGRP - (MinGRP+choiceH2)) + (MinGRP+choiceH2))/100 * slideGRP*isOnH2*isOnH;	
+		
+		isBreakC==true ? IOH=0:IOH=1;
+		isBreakH0==true ? IOH1=0:IOH1=1;
+		isBreakH1==true ? IOH2=0:IOH2=1;
+		
+		MPaH1=(Math.random() * (MaxGRP - (MinGRP+choiceH1)) + (MinGRP+choiceH1))/100 * slideGRP*isOnH1*isOnH*IOH*IOH1;
+		MPaH2=(Math.random() * (MaxGRP - (MinGRP+choiceH2)) + (MinGRP+choiceH2))/100 * slideGRP*isOnH2*isOnH*IOH*IOH2;	
 		
 		$("#progress_label_GRS_in").text(String(MPaMag.toFixed(2) + " МПа"));
 		$("#progressbar_GRS_in").progressbar( "option", "value", ((MPaMag/MaxMag)*100) );
@@ -365,8 +410,8 @@
 		$("#progressbar_GRS_out").progressbar( "option", "value", ((MPaGRS/MaxGRS)*100) );
 		
 		
-		$("#progress_label_GRP_in").text(String(MPaGRS.toFixed(2) + " МПа"));
-		$("#progressbar_GRP_in").progressbar( "option", "value", ((MPaGRS/MaxGRS)*100) );
+		$("#progress_label_GRP_in").text(String(MPaGRPIn.toFixed(2) + " МПа"));
+		$("#progressbar_GRP_in").progressbar( "option", "value", ((MPaGRPIn/MaxGRS)*100) );
 		
 		$("#progress_label_GRP_out").text(String(MPaGRP.toFixed(4) + " МПа"));
 		$("#progressbar_GRP_out").progressbar( "option", "value", ((MPaGRP/MaxGRP)*100) );
@@ -377,7 +422,7 @@
 		$("#progress_label_to_House2").text(String(MPaH2.toFixed(4) + " МПа"));
 		$("#progressbar_to_House2").progressbar( "option", "value", ((MPaH2/MaxGRP)*100) );
 		
-		if(isOnH1==0 || isOnH==0){
+		if(isOnH1*isOnH*IOH*IOH1*IOH1In==0){
 		}else{
 			gasOnH1=tarif*4.12/360;
 			gasOnSecH1+=gasOnH1;
@@ -385,7 +430,7 @@
 			profitGasOnH1+=gasOnH1*5.617;
 			$("#profit_H1").text("Доход: " + String(profitGasOnH1.toFixed(4)) + " руб.");
 		}
-		if(isOnH2==0 || isOnH==0){
+		if(isOnH2*isOnH*IOH*IOH2*IOH2In==0){
 		}else{
 			gasOnH2=tarif*8.16/360;
 			gasOnSecH2+=gasOnH2;
