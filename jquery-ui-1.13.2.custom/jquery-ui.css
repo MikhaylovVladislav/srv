@@ -671,6 +671,7 @@ button.ui-button::-moz-focus-inner {
 	overflow: hidden;
 }
 .ui-progressbar .ui-progressbar-value {
+	background: SkyBlue;
 	margin: -1px;
 	height: 100%;
 }
