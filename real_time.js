@@ -262,7 +262,8 @@
 			isBreakH3=false;
 			IOH1In=1;
 			IOH2In=1;
-		
+			dateZ = new Date();
+			dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
 			$("#textLog").html( "\n"+dateZ+"Авария ликвидирована" + $("#textLog").text());
 			$('#line_C1').css("border-left", "6px solid green");	
 			$('#line_C2').css("border-left", "6px solid green");	
