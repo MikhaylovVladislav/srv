@@ -46,6 +46,8 @@
 	var isBreakH1=false; 
 	var isBreakH2=false; 
 	var isBreakH3=false; 
+	var isBreakGRS=false; 
+	var isBreakGRP=false; 
 	var gr="6px solid green";
 	var ye="6px solid gold";
 	var re="6px solid red";
@@ -57,7 +59,12 @@
 	var IOH2In=1;
 	var colorH1="";
 	var colorH2="";
-
+	var ctA=0; //count avarii
+	var otA=[]; //object avarii
+	var rrA=0; // repair avarii
+	
+	
+	
 	$("#progress_label_GRS_in").text("0 МПа");
 	$("#progressbar_GRS_in").progressbar( "option", "value", 0);
 	$("#progress_label_GRS_out").text("0 МПа");
@@ -158,6 +165,7 @@
 	
 	$('#break_srv').on('click', function(){ 
 		isModeBreak=true;
+		myLoopAAuto();
 		$("#fieldS").css("border-color", "red");
 		$("#mainLegend").html("Система реального времени [РЕЖИМ АВАРИЙ]");
 		
@@ -170,9 +178,34 @@
 		
 	});
 	
+		$('#GRS').on('click', function(){ 
+		if(isModeBreak==true){
+			otA.push('#GRS');
+			ctA++;
+			isBreakGRS=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария в ГРС" + $("#textLog").text());
+			$('#GRS').css("background-color", "gold");	
+		}
+	});
+	
+	$('#GRP').on('click', function(){ 
+		if(isModeBreak==true){
+			otA.push('#GRP');
+			ctA++;
+			isBreakGRP=true;
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария в ГРП" + $("#textLog").text());
+			$('#GRP').css("background-color", "gold");	
+		}
+	});
 	
 	$('#line_M1').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_M1');
+			ctA++;
 			isBreakM1=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -181,8 +214,12 @@
 		}
 	});
 	
+	
+	
 	$('#line_M2').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_M2');
+			ctA++;
 			isBreakM2=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -193,6 +230,8 @@
 	
 	$('#line_H3').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_H3');
+			ctA++;
 			isBreakH3=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -203,6 +242,8 @@
 	
 	$('#line_H1').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_H1');
+			ctA++;
 			isBreakH1=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -213,6 +254,8 @@
 	
 	$('#line_H0').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_H0');
+			ctA++;
 			isBreakH0=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -223,6 +266,8 @@
 	
 	$('#line_H2').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_H2');
+			ctA++;
 			isBreakH2=true;
 			var dateZ = new Date();
 			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
@@ -233,13 +278,18 @@
 	
 	$('#line_C1').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_C1');
+			ctA++;
 			isBreakC=true;
+			$("#textLog").html( "\n"+dateZ+"Авария на регулирующем трубопроводе" + $("#textLog").text());
 			$('#line_C1').css("border-left", "6px solid gold");	
 			$('#line_C2').css("border-left", "6px solid gold");	
 		}
 	});
 	$('#line_C2').on('click', function(){ 
 		if(isModeBreak==true){
+			otA.push('#line_C2');
+			ctA++;
 			isBreakC=true;
 			$("#textLog").html( "\n"+dateZ+"Авария на регулирующем трубопроводе" + $("#textLog").text());
 			$('#line_C1').css("border-left", "6px solid gold");	
@@ -250,7 +300,11 @@
 	$('#brig_srv').on('click', function(){ 
 		var dateZ = new Date();
 		var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
-		$("#textLog").html( "\n"+dateZ+"Отправлена заявка на ликвидацию аварии" + $("#textLog").text());
+		$("#textLog").html( "\n"+dateZ+"Отправлена заявка на ликвидацию аварии("+ctA+")" + $("#textLog").text());
+		
+		myLoopA(); // Функция цикла починки
+		
+		/*for(let f=0;f<otA.length;f++){
 		var time = setTimeout(function() {
 			
 			isBreakM1=false; 
@@ -262,9 +316,12 @@
 			isBreakH3=false;
 			IOH1In=1;
 			IOH2In=1;
+			
 			dateZ = new Date();
 			dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
 			$("#textLog").html( "\n"+dateZ+"Авария ликвидирована" + $("#textLog").text());
+			
+			
 			$('#line_C1').css("border-left", "6px solid green");	
 			$('#line_C2').css("border-left", "6px solid green");	
 			$('#line_H0').css("border-top", "6px solid green");	
@@ -274,6 +331,7 @@
 			$('#line_M1').css("border-left", "6px solid green");	
 			$('#line_M2').css("border-left", "6px solid green");	
 	}, 5000);
+	}*/
 		
 	});
 	
@@ -304,6 +362,8 @@
 				choiceH2+=0.000494;
 			}
 		}
+		
+		isBreakGRS==true ? slideMag=0:slideMag=slideMag;
 		isBreakM1==true ? slideMag=0:slideMag=slideMag;
 		MPaMag=(Math.random() * (MaxMag - (MinMag+choiceGRSIn)) + (MinMag+choiceGRSIn))/100 * slideMag ;
 		
@@ -322,7 +382,7 @@
 			isMagInLog=false;
 			
 		}
-		if(isBreakM2==true){
+		if(isBreakM2==true || isBreakGRP==true){
 			MPaGRPIn=(Math.random() * (MaxGRS - (MinGRS+choiceGRSOut)) + (MinGRS+choiceGRSOut))/100 * 0;
 			slideGRP=0;
 		}else{
@@ -396,7 +456,7 @@
 			}
 			isBreakC == true && toggle ==true  ? $(".line_C").css('border-left',ye) : $(".line_C").css('border-left',gr);
 		}
-		
+		//isBreakGRP==true ? IOH=0:IOH=1;
 		isBreakC==true ? IOH=0:IOH=1;
 		isBreakH0==true ? IOH1=0:IOH1=1;
 		isBreakH1==true ? IOH2=0:IOH2=1;
@@ -444,6 +504,175 @@
 		}
 	}
 	
-
+	function myLoopA(){
+		setTimeout(function () {              
+			dateZ = new Date();
+			dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			$("#textLog").html( "\n"+dateZ+"Авария ликвидирована ("+otA[0]+")" + $("#textLog").text());
+			switchA(otA[0]);
+			
+			var randnum=Math.round(Math.random()*4000);
+			rrA=rrA+randnum;
+			$("#repair").html(rrA+" р.");
+			otA.splice(0, 1);
+			if ((ctA-1)!==0) {
+				ctA--;		  
+				myLoopA();             
+			}                        
+		}, 5000)
+	}
 	
+	function switchA(value){
+		switch(value){
+			case '#line_M1':
+				isBreakM1=false;
+				$(otA[0]).css("border-left", "6px solid green");
+			break;
+			case '#line_M2':
+				isBreakM2=false;
+				$(otA[0]).css("border-left", "6px solid green");
+			break;
+			case '#line_C1':
+				isBreakC=false;
+				$(otA[0]).css("border-left", "6px solid green");
+			break;
+			case '#line_C2':
+				isBreakC=false;
+				$(otA[0]).css("border-left", "6px solid green");
+			break;
+			case '#line_H0':
+				isBreakH0=false;
+				$(otA[0]).css("border-top", "6px solid green");
+			break;
+			case '#line_H1':
+				isBreakH1=false;
+				$(otA[0]).css("border-top", "6px solid green");
+			break;
+			case '#line_H2':
+				IOH1In=1;
+				isBreakH2=false;
+				$(otA[0]).css("border-top", "6px solid green");
+			break;
+			case '#line_H3':
+				IOH2In=1;
+				isBreakH3=false;
+				$(otA[0]).css("border-top", "6px solid green");
+			break;
+			case '#GRS':
+				IOH2In=1;
+				isBreakGRS=false;
+				$(otA[0]).css("background-color", "Beige");
+			break;
+			case '#GRP':
+				IOH2In=1;
+				isBreakGRP=false;
+				$(otA[0]).css("background-color", "Beige");
+			break;
+			default:
+				console.log("Неопред.");
+		}
+	}
+	
+	function myLoopAAuto(){
+		setTimeout(function () {              
+			
+			var dateZ = new Date();
+			var dateZ=dateZ.getHours() + ":" + dateZ.getMinutes() + ":" + dateZ.getSeconds()+" ";
+			var randnumAuto=Math.round(Math.random()*9);
+			
+			switchAAuto(randnumAuto, dateZ);
+			
+			if (isModeBreak==true) {
+						  
+				myLoopAAuto();             
+			}                        
+		}, 10100)
+	}
+	
+	function switchAAuto(value, dateZ){
+		switch(value){
+			case 0: //line M1
+			
+			otA.push('#line_M1');
+			ctA++;
+			isBreakM1=true;
+			$("#textLog").html( "\n"+dateZ+"Авария на магистральном трубопроводе" + $("#textLog").text());
+			$('#line_M1').css("border-left", ye);
+	
+			break;
+			
+			case 1:  //line M2
+			
+				otA.push('#line_M2');
+				ctA++;
+				isBreakM2=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на распределительном трубопроводе" + $("#textLog").text());
+				$('#line_M2').css("border-left", ye);	
+				
+			break;
+			case 2:
+				otA.push('#line_C1');
+				ctA++;
+				isBreakC=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на регулирующем трубопроводе" + $("#textLog").text());
+				$('#line_C1').css("border-left", "6px solid gold");	
+				$('#line_C2').css("border-left", "6px solid gold");	
+			break;
+			case 3:
+				otA.push('#line_C2');
+				ctA++;
+				isBreakC=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на регулирующем трубопроводе" + $("#textLog").text());
+				$('#line_C1').css("border-left", "6px solid gold");	
+				$('#line_C2').css("border-left", "6px solid gold");	
+			break;
+			case 4:
+				otA.push('#line_H0');
+				ctA++;
+				isBreakH0=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на газопровод-вводном трубопроводе" + $("#textLog").text());
+				$('#line_H0').css("border-top", "6px solid gold");	
+			break;
+			case 5:
+				otA.push('#line_H1');
+				ctA++;
+				isBreakH1=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на газопровод-вводном трубопроводе" + $("#textLog").text());
+				$('#line_H1').css("border-top", "6px solid gold");	
+			break;
+			case 6:
+				otA.push('#line_H2');
+				ctA++;
+				isBreakH2=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на вводном трубопроводе" + $("#textLog").text());
+				$('#line_H2').css("border-top", "6px solid gold");	
+			break;
+			case 7:
+				otA.push('#line_H3');
+				ctA++;
+				isBreakH3=true;
+				$("#textLog").html( "\n"+dateZ+"Авария на вводном трубопроводе" + $("#textLog").text());
+				$('#line_H3').css("border-top", "6px solid gold");	
+			break;
+			case 8:
+				otA.push('#GRS');
+				ctA++;
+				isBreakGRS=true;
+				$("#textLog").html( "\n"+dateZ+"Авария в ГРС" + $("#textLog").text());
+				$('#GRS').css("background-color", "gold");	
+			break;
+			case 9:
+				otA.push('#GRP');
+				ctA++;
+				isBreakGRP=true;
+				$("#textLog").html( "\n"+dateZ+"Авария в ГРП" + $("#textLog").text());
+				$('#GRP').css("background-color", "gold");	
+			break;
+			default:
+				console.log("Неопред.");
+		}
+	}
+		
+			
+
 });

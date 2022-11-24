@@ -1,16 +1,18 @@
 #GRS{
-    width:200px;
-    height:100px;
+    width:100px;
+    height:60px;
 	border-style: groove;
 	border-color: blue;
+	margin-left: 40px;
 	border-width: 4px;
 	background-color: Beige;
 }
 #GRP{
-    width:160px;
-    height:80px;
+    width:80px;
+    height:50px;
 	border-style: groove;
 	border-color: blue;
+	margin-left: 50px;
 	border-width: 4px;
 	background-color: Beige;
 }
@@ -78,7 +80,7 @@
 }
 
 .line_C{
-    height:310px;
+    height:200px;
 	width:2px;
 	border-left: 6px solid green;
 	margin-left: 100px;
@@ -111,8 +113,9 @@
 }
 
 #fieldS{
+	position: absolute;
     width: 800px;
-    height: 1400px;
+    height: 1000px;
 	border-width: 6px;
 	border-color: gray;
 	margin-left: 400px;
@@ -174,26 +177,37 @@
 
 #menu{
 	width: 300px;
-    height: 500px;
+    height: 530px;
 	float:left;
 	margin-left: 40px;
 	margin-top: 40px;
 }
 
 #log{
-	width: 300px;
-    height: 500px;
+	position: absolute;
+	width: 400px;
+    height: 600px;
 	float:left;
-	margin-left: 40px;
-	margin-top: -840px;
+	margin-left: 1300px;
+	margin-top: 40px;
+}
+
+#consump{
+	position: absolute;
+	width: 300px;
+    height: 600px;
+	float:left;
+	margin-left: 1800px;
+	margin-top: 40px;
 }
 
 #data{
+	position: absolute;
 	width: 300px;
-    height: 500px;
+    height: 400px;
 	float:left;
 	margin-left: 40px;
-	margin-top: -260px;
+	margin-top: 600px;
 }
 
 #option{
@@ -247,8 +261,8 @@ button{
 #textLog {
     padding: 10px;
     max-width: 100%;
-	width: 300px;
-	height: 480px;
+	width: 450px;
+	height: 580px;
     line-height: 1.5;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -263,4 +277,11 @@ button{
     font-weight: bold;
     text-shadow: 2px 2px 0 #fff;
 
+}
+#des{
+	font-size: 24px;
+	float:right;
+}
+body{ 
+zoom: 80%;
 }
